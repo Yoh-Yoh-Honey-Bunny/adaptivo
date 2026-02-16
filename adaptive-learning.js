@@ -1,120 +1,228 @@
 // ============================================
-// EXPERTENMODELL - Wissensbasis über Eukaryoten
+// EXPERTENMODELL - Wissensbasis über Zelle und Stoffwechsel
 // ============================================
 
 const expertenmodell = {
     leicht: [
         {
-            frage: "Was ist der Zellkern?",
+            frage: "Was ist die kleinste lebende Einheit aller Organismen?",
             antworten: [
-                "Die Steuerzentrale der Zelle",
-                "Die Hülle der Zelle",
-                "Das Kraftwerk der Zelle",
-                "Der Speicher für Wasser"
-            ],
-            richtig: 0,
-            hinweis: "Der Zellkern enthält die DNA und steuert alle Vorgänge in der Zelle.",
-            erklaerung: "Der Zellkern ist wie das Gehirn der Zelle. Er enthält die DNA und gibt Befehle!"
-        },
-        {
-            frage: "Was macht die Zellmembran?",
-            antworten: [
-                "Sie produziert Energie",
-                "Sie schützt die Zelle und kontrolliert was rein und raus geht",
-                "Sie speichert Nährstoffe",
-                "Sie bewegt die Zelle"
+                "Das Organ",
+                "Die Zelle",
+                "Das Gewebe",
+                "Der Organismus"
             ],
             richtig: 1,
-            hinweis: "Die Zellmembran ist wie eine Mauer mit Türen - sie entscheidet, was rein und raus darf.",
-            erklaerung: "Die Zellmembran ist die Schutzhülle der Zelle und kontrolliert den Stoffaustausch!"
+            hinweis: "Alle Lebewesen bestehen aus diesen kleinsten Bausteinen.",
+            erklaerung: "Die Zelle ist die kleinste lebende Einheit! Der menschliche Körper besteht aus etwa 100 Billionen Zellen."
+        },
+        {
+            frage: "Was macht der Zellkern?",
+            antworten: [
+                "Er produziert Energie",
+                "Er schützt die Zelle",
+                "Er steuert alle Vorgänge und enthält die DNA",
+                "Er transportiert Stoffe"
+            ],
+            richtig: 2,
+            hinweis: "Der Zellkern wird auch 'Kommandozentrale' genannt.",
+            erklaerung: "Der Zellkern ist die Kommandozentrale der Zelle. Er enthält die DNA und steuert alle wichtigen Vorgänge!"
         },
         {
             frage: "Was ist Cytoplasma?",
             antworten: [
                 "Eine gelartige Flüssigkeit in der Zelle",
-                "Die äußere Hülle",
-                "Ein Organ im Körper",
-                "Die DNA der Zelle"
+                "Die äußere Hülle der Zelle",
+                "Die DNA der Zelle",
+                "Ein Zellorganell"
             ],
             richtig: 0,
-            hinweis: "Das Cytoplasma füllt den Raum zwischen Zellkern und Zellmembran aus.",
-            erklaerung: "Das Cytoplasma ist wie eine Gel-Füllung, in der alle Zellorganellen schwimmen!"
+            hinweis: "Es füllt den Raum zwischen Zellkern und Zellmembran aus.",
+            erklaerung: "Das Cytoplasma ist eine gelartige Flüssigkeit, in der alle Zellorganellen schwimmen!"
+        },
+        {
+            frage: "Welche Zellen haben eine Zellwand?",
+            antworten: [
+                "Nur Tierzellen",
+                "Nur Pflanzenzellen",
+                "Alle Zellen",
+                "Keine Zellen"
+            ],
+            richtig: 1,
+            hinweis: "Diese Zellen brauchen zusätzliche Stabilität.",
+            erklaerung: "Nur Pflanzenzellen haben eine feste Zellwand aus Cellulose, die ihnen Stabilität gibt!"
+        },
+        {
+            frage: "Warum sind Pflanzen grün?",
+            antworten: [
+                "Wegen der Zellwand",
+                "Wegen der Chloroplasten",
+                "Wegen der Mitochondrien",
+                "Wegen des Zellkerns"
+            ],
+            richtig: 1,
+            hinweis: "In diesen Organellen findet die Photosynthese statt.",
+            erklaerung: "Chloroplasten enthalten den grünen Farbstoff Chlorophyll und machen Pflanzen grün!"
         }
     ],
     mittel: [
         {
-            frage: "Was machen die Mitochondrien?",
+            frage: "Warum werden Mitochondrien als 'Kraftwerke der Zelle' bezeichnet?",
             antworten: [
-                "Sie speichern Wasser",
-                "Sie produzieren Energie (ATP)",
-                "Sie bauen Proteine",
-                "Sie transportieren Stoffe"
+                "Sie speichern Energie",
+                "Sie produzieren ATP durch Zellatmung",
+                "Sie transportieren Energie",
+                "Sie bauen Energie ab"
             ],
             richtig: 1,
-            hinweis: "Mitochondrien werden oft als 'Kraftwerke der Zelle' bezeichnet.",
-            erklaerung: "Mitochondrien produzieren ATP - die Energie-Währung der Zelle. Deshalb heißen sie Kraftwerke!"
+            hinweis: "Hier findet die Zellatmung statt.",
+            erklaerung: "Mitochondrien produzieren ATP durch Zellatmung - die Energie-Währung der Zelle!"
         },
         {
-            frage: "Welche Aussage über Eukaryoten ist richtig?",
+            frage: "Was ist die Funktion der Zellmembran?",
             antworten: [
-                "Sie haben keinen Zellkern",
-                "Sie haben einen echten Zellkern mit Membran",
-                "Sie sind immer Einzeller",
-                "Sie können keine Energie produzieren"
+                "Sie speichert Nährstoffe",
+                "Sie produziert Proteine",
+                "Sie ist selektiv permeabel und kontrolliert den Stoffaustausch",
+                "Sie enthält die DNA"
             ],
-            richtig: 1,
-            hinweis: "Das Wort 'Eu-karyot' kommt aus dem Griechischen und bedeutet 'echter Kern'.",
-            erklaerung: "Eukaryoten haben einen echten Zellkern mit Kernmembran - im Gegensatz zu Prokaryoten!"
+            richtig: 2,
+            hinweis: "Sie wirkt wie ein intelligenter Türsteher.",
+            erklaerung: "Die Zellmembran ist selektiv permeabel - sie kontrolliert genau, welche Stoffe durchdürfen!"
         },
         {
-            frage: "Was ist der Unterschied zwischen Tier- und Pflanzenzellen?",
+            frage: "Was ist Diffusion?",
             antworten: [
-                "Tierzellen haben einen Zellkern, Pflanzenzellen nicht",
-                "Pflanzenzellen haben eine Zellwand und Chloroplasten",
-                "Pflanzenzellen haben keine Mitochondrien",
-                "Es gibt keinen Unterschied"
+                "Der aktive Transport von Stoffen",
+                "Die Bewegung von Teilchen von hoher zu niedriger Konzentration",
+                "Die Teilung der Zelle",
+                "Die Produktion von Energie"
             ],
             richtig: 1,
-            hinweis: "Pflanzenzellen haben zusätzliche Strukturen, die sie grün machen und stabilisieren.",
-            erklaerung: "Pflanzenzellen haben eine feste Zellwand und Chloroplasten für Photosynthese!"
+            hinweis: "Dies geschieht ohne Energieaufwand, ganz natürlich.",
+            erklaerung: "Diffusion ist die Bewegung von Teilchen von Orten hoher zu niedriger Konzentration - ganz ohne Energie!"
+        },
+        {
+            frage: "Welches Organell ist die 'Poststelle' der Zelle?",
+            antworten: [
+                "Mitochondrien",
+                "Lysosomen",
+                "Golgi-Apparat",
+                "Endoplasmatisches Retikulum"
+            ],
+            richtig: 2,
+            hinweis: "Dieses Organell verpackt und verschickt Proteine.",
+            erklaerung: "Der Golgi-Apparat verpackt Proteine und transportiert sie dorthin, wo sie gebraucht werden!"
+        },
+        {
+            frage: "Was ist Osmose?",
+            antworten: [
+                "Die Bewegung von Salzen durch eine Membran",
+                "Die Bewegung von Wasser durch eine selektiv permeable Membran",
+                "Die Teilung von Zellen",
+                "Die Produktion von Proteinen"
+            ],
+            richtig: 1,
+            hinweis: "Ein Spezialfall der Diffusion, aber nur für Wasser.",
+            erklaerung: "Osmose ist die Bewegung von Wassermolekülen durch eine selektiv permeable Membran!"
+        },
+        {
+            frage: "Wie viele Tochterzellen entstehen bei der Mitose?",
+            antworten: [
+                "Eine Zelle",
+                "Zwei identische Zellen",
+                "Vier Zellen",
+                "Acht Zellen"
+            ],
+            richtig: 1,
+            hinweis: "Die Mutterzelle teilt sich in zwei.",
+            erklaerung: "Bei der Mitose entstehen zwei identische Tochterzellen mit dem gleichen Erbgut!"
         }
     ],
     schwer: [
         {
-            frage: "Was ist die Funktion des Endoplasmatischen Retikulums (ER)?",
+            frage: "Was unterscheidet das raue vom glatten Endoplasmatischen Retikulum?",
             antworten: [
-                "Transport und Verarbeitung von Proteinen und Lipiden",
-                "Speicherung von DNA",
-                "Produktion von ATP",
-                "Abbau von Abfallstoffen"
+                "Das raue ER hat Ribosomen und stellt Proteine her",
+                "Das glatte ER enthält DNA",
+                "Das raue ER produziert ATP",
+                "Es gibt keinen Unterschied"
             ],
             richtig: 0,
-            hinweis: "Das ER ist ein Netzwerk von Kanälen und hilft beim Transport von Stoffen.",
-            erklaerung: "Das ER ist wie ein Transportsystem und eine Fabrik für Proteine und Fette!"
+            hinweis: "Die 'Rauheit' kommt von kleinen Strukturen auf der Oberfläche.",
+            erklaerung: "Das raue ER ist mit Ribosomen besetzt und stellt Proteine her, das glatte ER produziert Lipide!"
         },
         {
-            frage: "Welche Organelle ist für die Verdauung in der Zelle zuständig?",
+            frage: "Welche Organelle enthält Verdauungsenzyme und baut alte Zellbestandteile ab?",
             antworten: [
                 "Mitochondrien",
-                "Ribosomen",
+                "Golgi-Apparat",
                 "Lysosomen",
-                "Golgi-Apparat"
+                "Chloroplasten"
             ],
             richtig: 2,
-            hinweis: "Diese Organelle enthält Enzyme, die Stoffe abbauen können.",
-            erklaerung: "Lysosomen sind die 'Recycling-Zentren' der Zelle - sie bauen alte Teile ab!"
+            hinweis: "Diese Organelle ist das 'Recycling-Zentrum' der Zelle.",
+            erklaerung: "Lysosomen enthalten Enzyme und bauen alte Teile ab - sie sind die Recycling-Zentren!"
         },
         {
-            frage: "Was macht der Golgi-Apparat?",
+            frage: "Was beschreibt die Formel: C₆H₁₂O₆ + 6 O₂ → 6 CO₂ + 6 H₂O + Energie?",
             antworten: [
-                "Er produziert DNA",
-                "Er verpackt und modifiziert Proteine für den Export",
-                "Er produziert Energie",
-                "Er kontrolliert die Zellteilung"
+                "Photosynthese",
+                "Zellatmung",
+                "Osmose",
+                "Diffusion"
             ],
             richtig: 1,
-            hinweis: "Der Golgi-Apparat ist wie eine Poststelle - er verpackt Stoffe für den Versand.",
-            erklaerung: "Der Golgi-Apparat verpackt Proteine wie Geschenke und schickt sie dahin, wo sie gebraucht werden!"
+            hinweis: "Dieser Prozess findet in den Mitochondrien statt.",
+            erklaerung: "Das ist die Zellatmung! Glucose wird mit Sauerstoff zu CO₂, Wasser und ATP abgebaut."
+        },
+        {
+            frage: "In welcher Phase der Mitose ordnen sich die Chromosomen in der Äquatorialebene an?",
+            antworten: [
+                "Prophase",
+                "Metaphase",
+                "Anaphase",
+                "Telophase"
+            ],
+            richtig: 1,
+            hinweis: "Diese Phase liegt zwischen Prophase und Anaphase.",
+            erklaerung: "In der Metaphase ordnen sich die Chromosomen in der Mitte der Zelle an!"
+        },
+        {
+            frage: "Was ist Plasmolyse?",
+            antworten: [
+                "Das Wachstum von Pflanzenzellen",
+                "Das Zurückziehen der Zellmembran von der Zellwand durch Wasserverlust",
+                "Die Teilung von Pflanzenzellen",
+                "Die Photosynthese in Pflanzen"
+            ],
+            richtig: 1,
+            hinweis: "Dies passiert, wenn Pflanzenzellen in stark salzhaltige Lösungen kommen.",
+            erklaerung: "Bei Plasmolyse verliert die Zelle durch Osmose Wasser und die Membran zieht sich zurück!"
+        },
+        {
+            frage: "Was ist ATP und wofür braucht die Zelle es?",
+            antworten: [
+                "Ein Protein zur Zellteilung",
+                "Die universelle Energiewährung der Zelle",
+                "Ein Enzym für die Verdauung",
+                "Ein Teil der DNA"
+            ],
+            richtig: 1,
+            hinweis: "Die Abkürzung steht für Adenosintriphosphat.",
+            erklaerung: "ATP speichert Energie in chemischen Bindungen - die Zelle nutzt es für alle ihre Aufgaben!"
+        },
+        {
+            frage: "Welche drei Besonderheiten haben Pflanzenzellen zusätzlich zu Tierzellen?",
+            antworten: [
+                "Zellkern, Mitochondrien, Ribosomen",
+                "Zellwand, Chloroplasten, Vakuole",
+                "Lysosomen, Golgi-Apparat, ER",
+                "DNA, RNA, Proteine"
+            ],
+            richtig: 1,
+            hinweis: "Diese drei Strukturen fehlen Tierzellen komplett.",
+            erklaerung: "Pflanzenzellen haben zusätzlich: Zellwand (Stabilität), Chloroplasten (Photosynthese), Vakuole (Speicher)!"
         }
     ]
 };
