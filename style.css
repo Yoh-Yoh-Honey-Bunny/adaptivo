@@ -872,3 +872,226 @@ input:checked + .toggle-slider:before {
     background: #fecaca;
     border-color: #dc2626;
 }
+
+/* Themen-Übersicht */
+.topics-overview {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+}
+
+.topics-title {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.topics-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 32px;
+    font-size: 16px;
+}
+
+.topics-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.topic-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    transition: all var(--animation-duration);
+}
+
+.topic-item:hover {
+    background: #f0f0f0;
+    transform: translateX(4px);
+}
+
+.topic-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+}
+
+.topic-number {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.topic-content h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.topic-content p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+.topic-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.learn-button,
+.quiz-button {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all var(--animation-duration);
+    cursor: pointer;
+}
+
+.learn-button {
+    background: #e0e7ff;
+    color: #4338ca;
+    border: 2px solid #c7d2fe;
+}
+
+.learn-button:hover {
+    background: #c7d2fe;
+    transform: translateY(-2px);
+}
+
+.quiz-button {
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    color: white;
+    border: none;
+}
+
+.quiz-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .topic-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    
+    .topic-buttons {
+        width: 100%;
+    }
+    
+    .learn-button,
+    .quiz-button {
+        flex: 1;
+        text-align: center;
+    }
+}
+
+/* Lern-Content */
+.learn-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.learn-section {
+    background: white;
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 24px;
+}
+
+.learn-section h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--gradient-start);
+}
+
+.learn-section h3 {
+    color: #444;
+    font-size: 20px;
+    margin-top: 24px;
+    margin-bottom: 12px;
+}
+
+.learn-section p {
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 16px;
+    font-size: 16px;
+}
+
+.learn-section ul {
+    margin-left: 24px;
+    margin-bottom: 16px;
+}
+
+.learn-section li {
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 8px;
+}
+
+.learn-section strong {
+    color: #333;
+    font-weight: 600;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    margin-top: 32px;
+}
+
+.primary-button,
+.secondary-button {
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all var(--animation-duration);
+    flex: 1;
+    text-align: center;
+}
+
+.primary-button {
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    color: white;
+}
+
+.primary-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.3);
+}
+
+.secondary-button {
+    background: #f5f5f5;
+    color: #333;
+}
+
+.secondary-button:hover {
+    background: #e0e0e0;
+}
