@@ -199,6 +199,190 @@ input:focus, select:focus {
     margin-bottom: 30px;
 }
 
+/* Fächer-Übersicht */
+.subjects-overview {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.subjects-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 40px;
+    text-align: center;
+}
+
+.subjects-header h2 {
+    margin-bottom: 8px;
+    color: white;
+    font-size: 28px;
+}
+
+.subjects-header p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 16px;
+}
+
+.subjects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 24px;
+    padding: 40px;
+}
+
+/* Fächer-Karten */
+.subject-card {
+    position: relative;
+    padding: 32px 24px;
+    border-radius: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+.subject-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.subject-card.coming-soon {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.subject-card.coming-soon:hover {
+    transform: none;
+}
+
+/* Fach-spezifische Farben */
+.subject-card.bio {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.subject-card.math {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+}
+
+.subject-card.deutsch {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.subject-card.english {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+}
+
+.subject-card.geschichte {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.subject-card.erdkunde {
+    background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+}
+
+.subject-card.physik {
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+}
+
+.subject-card.chemie {
+    background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+}
+
+.subject-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.subject-card h3 {
+    font-size: 22px;
+    margin-bottom: 8px;
+    color: white;
+}
+
+.subject-card p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 16px;
+}
+
+.subject-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+}
+
+.subject-progress {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.progress-item {
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+}
+
+.progress-item span {
+    font-weight: 700;
+}
+
+/* Back Link */
+.back-link {
+    color: #667eea;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-block;
+    margin-bottom: 8px;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: #764ba2;
+}
+
+/* Back Button im Ergebnis */
+.back-button {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 12px 28px;
+    background: #f5f5f5;
+    color: #333;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.back-button:hover {
+    background: #e0e0e0;
+}
+
+/* Fortschritts-Panel */
+.progress-panel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
 .stat-box {
     background: white;
     padding: 24px;

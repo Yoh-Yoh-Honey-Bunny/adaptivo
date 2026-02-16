@@ -23,69 +23,95 @@
         <div class="progress-panel">
             <div class="stat-box">
                 <div class="stat-number" id="totalPoints">0</div>
-                <div class="stat-label">Punkte</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-number" id="currentLevel">1</div>
-                <div class="stat-label">Level</div>
+                <div class="stat-label">Gesamt-Punkte</div>
             </div>
             <div class="stat-box">
                 <div class="stat-number" id="correctAnswers">0</div>
-                <div class="stat-label">Richtig</div>
+                <div class="stat-label">Richtige Antworten</div>
             </div>
             <div class="stat-box">
-                <div class="stat-number" id="currentDifficulty">Leicht</div>
-                <div class="stat-label">Schwierigkeit</div>
+                <div class="stat-number" id="totalSubjects">1</div>
+                <div class="stat-label">Aktive Fächer</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="totalQuizzes">0</div>
+                <div class="stat-label">Absolvierte Übungen</div>
             </div>
         </div>
 
-        <!-- Lernbereich -->
-        <div class="learning-area">
-            <div class="topic-header">
-                <h2>🧬 Thema: Zellaufbau von Eukaryoten</h2>
-                <p>Lerne alles über den Aufbau von Zellen!</p>
+        <!-- Fächer-Übersicht -->
+        <div class="subjects-overview">
+            <div class="subjects-header">
+                <h2>📚 Wähle dein Fach</h2>
+                <p>Klicke auf ein Fach, um mit dem Lernen zu beginnen!</p>
             </div>
-
-            <!-- Quiz-Bereich -->
-            <div class="quiz-container" id="quizContainer">
-                <div class="question-box">
-                    <div class="question-number">Frage <span id="questionNumber">1</span> von 3</div>
-                    <h3 id="questionText">Lade Frage...</h3>
-                </div>
-
-                <div class="answers-container" id="answersContainer">
-                    <!-- Antworten werden hier dynamisch eingefügt -->
-                </div>
-
-                <div class="hint-box" id="hintBox" style="display: none;">
-                    <strong>💡 Hinweis:</strong> <span id="hintText"></span>
-                </div>
-
-                <div class="feedback-box" id="feedbackBox" style="display: none;">
-                    <div id="feedbackText"></div>
-                </div>
-
-                <button id="nextButton" class="next-button" style="display: none;" onclick="nextQuestion()">
-                    Nächste Frage →
-                </button>
-            </div>
-
-            <!-- Ergebnis-Bildschirm -->
-            <div class="result-screen" id="resultScreen" style="display: none;">
-                <div class="result-content">
-                    <h2 id="resultTitle">🎉 Super gemacht!</h2>
-                    <div class="result-stats">
-                        <div class="result-stat">
-                            <div class="result-number" id="resultCorrect">0</div>
-                            <div class="result-label">Richtige Antworten</div>
-                        </div>
-                        <div class="result-stat">
-                            <div class="result-number" id="resultPoints">0</div>
-                            <div class="result-label">Punkte verdient</div>
-                        </div>
+            
+            <div class="subjects-grid">
+                <!-- Biologie -->
+                <a href="biologie-lernpfad.html" class="subject-card bio">
+                    <div class="subject-icon">🧬</div>
+                    <h3>Biologie</h3>
+                    <p>Zellen, Organismen & mehr</p>
+                    <div class="subject-progress" id="bioProgress">
+                        <div class="progress-item">Level <span id="bioLevel">1</span></div>
+                        <div class="progress-item"><span id="bioDifficulty">Leicht</span></div>
                     </div>
-                    <div class="result-message" id="resultMessage"></div>
-                    <button onclick="restartQuiz()" class="restart-button">Nochmal üben 🔄</button>
+                </a>
+                
+                <!-- Mathematik -->
+                <div class="subject-card math coming-soon">
+                    <div class="subject-icon">🔢</div>
+                    <h3>Mathematik</h3>
+                    <p>Zahlen, Rechnen & Geometrie</p>
+                    <div class="subject-badge">Bald verfügbar</div>
+                </div>
+                
+                <!-- Deutsch -->
+                <div class="subject-card deutsch coming-soon">
+                    <div class="subject-icon">📖</div>
+                    <h3>Deutsch</h3>
+                    <p>Grammatik, Lesen & Schreiben</p>
+                    <div class="subject-badge">Bald verfügbar</div>
+                </div>
+                
+                <!-- Englisch -->
+                <div class="subject-card english coming-soon">
+                    <div class="subject-icon">🇬🇧</div>
+                    <h3>Englisch</h3>
+                    <p>Vokabeln & Grammatik</p>
+                    <div class="subject-badge">Bald verfügbar</div>
+                </div>
+                
+                <!-- Geschichte -->
+                <div class="subject-card geschichte coming-soon">
+                    <div class="subject-icon">🏛️</div>
+                    <h3>Geschichte</h3>
+                    <p>Epochen & Ereignisse</p>
+                    <div class="subject-badge">Bald verfügbar</div>
+                </div>
+                
+                <!-- Erdkunde -->
+                <div class="subject-card erdkunde coming-soon">
+                    <div class="subject-icon">🌍</div>
+                    <h3>Erdkunde</h3>
+                    <p>Länder & Kontinente</p>
+                    <div class="subject-badge">Bald verfügbar</div>
+                </div>
+                
+                <!-- Physik -->
+                <div class="subject-card physik coming-soon">
+                    <div class="subject-icon">⚛️</div>
+                    <h3>Physik</h3>
+                    <p>Kräfte & Energie</p>
+                    <div class="subject-badge">Bald verfügbar</div>
+                </div>
+                
+                <!-- Chemie -->
+                <div class="subject-card chemie coming-soon">
+                    <div class="subject-icon">🧪</div>
+                    <h3>Chemie</h3>
+                    <p>Elemente & Reaktionen</p>
+                    <div class="subject-badge">Bald verfügbar</div>
                 </div>
             </div>
         </div>
@@ -96,7 +122,39 @@
     <script>
         checkLogin();
         displayUserName();
-        initializeLearning();
+        
+        // Lade alle Fächer-Fortschritte und zeige Gesamt-Statistiken
+        function zeigeGesamtStatistiken() {
+            const biologie = JSON.parse(localStorage.getItem('lernendenmodell_biologie')) || { 
+                gesamtPunkte: 0, 
+                richtigeAntworten: 0, 
+                absolvierteQuizze: 0,
+                level: 1,
+                schwierigkeitsgrad: 'leicht'
+            };
+            
+            // Berechne Gesamt-Statistiken über alle Fächer
+            const gesamtPunkte = biologie.gesamtPunkte;
+            const gesamtRichtig = biologie.richtigeAntworten;
+            const gesamtQuizze = biologie.absolvierteQuizze || 0;
+            const aktiveFaecher = gesamtQuizze > 0 ? 1 : 0;
+            
+            document.getElementById('totalPoints').textContent = gesamtPunkte;
+            document.getElementById('correctAnswers').textContent = gesamtRichtig;
+            document.getElementById('totalSubjects').textContent = aktiveFaecher;
+            document.getElementById('totalQuizzes').textContent = gesamtQuizze;
+            
+            // Zeige Biologie-Fortschritt auf der Karte
+            const schwierigkeitTexte = {
+                'leicht': 'Leicht',
+                'mittel': 'Mittel',
+                'schwer': 'Schwer'
+            };
+            document.getElementById('bioLevel').textContent = biologie.level;
+            document.getElementById('bioDifficulty').textContent = schwierigkeitTexte[biologie.schwierigkeitsgrad];
+        }
+        
+        zeigeGesamtStatistiken();
     </script>
 </body>
 </html>

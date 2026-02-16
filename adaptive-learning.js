@@ -129,6 +129,7 @@ let lernendenmodell = {
     schwierigkeitsgrad: 'leicht',
     richtigeAntworten: 0,
     falscheAntworten: 0,
+    absolvierteQuizze: 0,
     aktuellerDurchgang: {
         richtig: 0,
         falsch: 0,
@@ -136,9 +137,12 @@ let lernendenmodell = {
     }
 };
 
+// Fachspezifischer Speicherschlüssel (kann später für andere Fächer angepasst werden)
+let currentSubject = 'biologie';
+
 // Laden des gespeicherten Fortschritts
 function ladeFortschritt() {
-    const gespeichert = localStorage.getItem('lernendenmodell');
+    const gespeichert = localStorage.getItem('lernendenmodell_' + currentSubject);
     if (gespeichert) {
         lernendenmodell = JSON.parse(gespeichert);
     }
@@ -146,7 +150,7 @@ function ladeFortschritt() {
 
 // Speichern des Fortschritts
 function speichereFortschritt() {
-    localStorage.setItem('lernendenmodell', JSON.stringify(lernendenmodell));
+    localStorage.setItem('lernendenmodell_' + currentSubject, JSON.stringify(lernendenmodell));
 }
 
 // ============================================
@@ -318,6 +322,9 @@ function zeigeErgebnis() {
     const richtig = lernendenmodell.aktuellerDurchgang.richtig;
     const gesamt = aktuelleFragenliste.length;
     const prozent = (richtig / gesamt) * 100;
+    
+    // Erhöhe Quiz-Zähler
+    lernendenmodell.absolvierteQuizze = (lernendenmodell.absolvierteQuizze || 0) + 1;
     
     // Outer Loop: Schwierigkeit anpassen
     let neuerSchwierigkeitsgrad = lernendenmodell.schwierigkeitsgrad;

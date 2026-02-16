@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biologie Lernpfad - Adaptivo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Navigation Header -->
+        <div class="dashboard-header">
+            <div>
+                <a href="schueler-dashboard.html" class="back-link">← Zurück zu Fächern</a>
+                <h1>🧬 Biologie Lernpfad</h1>
+                <p class="welcome-text">
+                    <strong id="userName"></strong>
+                </p>
+            </div>
+            <button onclick="logout()" class="logout-button">Abmelden</button>
+        </div>
+        
+        <!-- Fortschritts-Panel -->
+        <div class="progress-panel">
+            <div class="stat-box">
+                <div class="stat-number" id="totalPoints">0</div>
+                <div class="stat-label">Punkte</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="currentLevel">1</div>
+                <div class="stat-label">Level</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="correctAnswers">0</div>
+                <div class="stat-label">Richtig</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="currentDifficulty">Leicht</div>
+                <div class="stat-label">Schwierigkeit</div>
+            </div>
+        </div>
+
+        <!-- Lernbereich -->
+        <div class="learning-area">
+            <div class="topic-header">
+                <h2>🧬 Thema: Zellaufbau von Eukaryoten</h2>
+                <p>Lerne alles über den Aufbau von Zellen!</p>
+            </div>
+
+            <!-- Quiz-Bereich -->
+            <div class="quiz-container" id="quizContainer">
+                <div class="question-box">
+                    <div class="question-number">Frage <span id="questionNumber">1</span> von 3</div>
+                    <h3 id="questionText">Lade Frage...</h3>
+                </div>
+
+                <div class="answers-container" id="answersContainer">
+                    <!-- Antworten werden hier dynamisch eingefügt -->
+                </div>
+
+                <div class="hint-box" id="hintBox" style="display: none;">
+                    <strong>💡 Hinweis:</strong> <span id="hintText"></span>
+                </div>
+
+                <div class="feedback-box" id="feedbackBox" style="display: none;">
+                    <div id="feedbackText"></div>
+                </div>
+
+                <button id="nextButton" class="next-button" style="display: none;" onclick="nextQuestion()">
+                    Nächste Frage →
+                </button>
+            </div>
+
+            <!-- Ergebnis-Bildschirm -->
+            <div class="result-screen" id="resultScreen" style="display: none;">
+                <div class="result-content">
+                    <h2 id="resultTitle">🎉 Super gemacht!</h2>
+                    <div class="result-stats">
+                        <div class="result-stat">
+                            <div class="result-number" id="resultCorrect">0</div>
+                            <div class="result-label">Richtige Antworten</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="result-number" id="resultPoints">0</div>
+                            <div class="result-label">Punkte verdient</div>
+                        </div>
+                    </div>
+                    <div class="result-message" id="resultMessage"></div>
+                    <button onclick="restartQuiz()" class="restart-button">Nochmal üben 🔄</button>
+                    <a href="schueler-dashboard.html" class="back-button">Zurück zu Fächern</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script src="adaptive-learning.js"></script>
+    <script>
+        checkLogin();
+        displayUserName();
+        initializeLearning();
+    </script>
+</body>
+</html>
