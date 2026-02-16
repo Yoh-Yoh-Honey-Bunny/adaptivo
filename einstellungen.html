@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Einstellungen - Adaptivo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <div>
+                <a href="schueler-dashboard.html" class="back-link">← Zurück zum Dashboard</a>
+                <h1>⚙️ Einstellungen</h1>
+                <p class="welcome-text">
+                    <strong id="userName"></strong>
+                </p>
+            </div>
+            <button onclick="logout()" class="logout-button">Abmelden</button>
+        </div>
+        
+        <div class="settings-container">
+            <!-- Account Einstellungen -->
+            <div class="settings-section">
+                <h2>👤 Account</h2>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-label">Benutzername</div>
+                        <div class="setting-description">Dein angezeigter Name</div>
+                    </div>
+                    <input type="text" id="displayName" class="setting-input" placeholder="Max Musterschüler">
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-label">E-Mail</div>
+                        <div class="setting-description">Deine Anmelde-E-Mail</div>
+                    </div>
+                    <input type="email" id="emailAddress" class="setting-input" value="schueler@test.de" disabled>
+                </div>
+            </div>
+
+            <!-- Lern-Einstellungen -->
+            <div class="settings-section">
+                <h2>📚 Lern-Einstellungen</h2>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-label">Fragen pro Quiz</div>
+                        <div class="setting-description">Wie viele Fragen pro Übung?</div>
+                    </div>
+                    <select id="questionsPerQuiz" class="setting-select">
+                        <option value="3" selected>3 Fragen</option>
+                        <option value="5">5 Fragen</option>
+                        <option value="10">10 Fragen</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-label">Hinweise anzeigen</div>
+                        <div class="setting-description">Bei falschen Antworten Hinweise geben</div>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="showHints" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-label">Erklärungen anzeigen</div>
+                        <div class="setting-description">Nach jeder Antwort Erklärung zeigen</div>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="showExplanations" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Benachrichtigungen -->
+            <div class="settings-section">
+                <h2>🔔 Benachrichtigungen</h2>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-label">Tägliche Erinnerung</div>
+                        <div class="setting-description">Erinnere mich ans Üben</div>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="dailyReminder">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-label">Erfolgs-Mitteilungen</div>
+                        <div class="setting-description">Zeige wenn ich ein Level erreiche</div>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="achievementNotifications" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Erscheinungsbild -->
+            <div class="settings-section">
+                <h2>🎨 Erscheinungsbild</h2>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-label">Farbschema</div>
+                        <div class="setting-description">Wähle dein bevorzugtes Design</div>
+                    </div>
+                    <select id="colorScheme" class="setting-select">
+                        <option value="default" selected>Standard (Lila)</option>
+                        <option value="blue">Blau</option>
+                        <option value="green">Grün</option>
+                        <option value="dark">Dunkel</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-label">Animationen</div>
+                        <div class="setting-description">Bewegungseffekte in der App</div>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="animations" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Datenschutz & Sicherheit -->
+            <div class="settings-section">
+                <h2>🔒 Datenschutz & Sicherheit</h2>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-label">Fortschritt sichern</div>
+                        <div class="setting-description">Speichere deinen Lernfortschritt lokal</div>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="saveProgress" checked disabled>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <button class="danger-button" onclick="resetProgress()">
+                        🗑️ Alle Daten zurücksetzen
+                    </button>
+                    <div class="setting-description" style="margin-top: 8px; color: #dc2626;">
+                        Vorsicht: Löscht deinen gesamten Lernfortschritt unwiderruflich!
+                    </div>
+                </div>
+            </div>
+
+            <!-- Speichern Button -->
+            <div class="settings-actions">
+                <button class="save-button" onclick="saveSettings()">💾 Einstellungen speichern</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        checkLogin();
+        displayUserName();
+        loadSettings();
+    </script>
+</body>
+</html>

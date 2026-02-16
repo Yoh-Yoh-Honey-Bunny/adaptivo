@@ -153,6 +153,37 @@ function speichereFortschritt() {
     localStorage.setItem('lernendenmodell_' + currentSubject, JSON.stringify(lernendenmodell));
 }
 
+// Update tägliche Statistiken
+function updateDailyStats(punkte, richtig, quiz) {
+    const heute = new Date().toDateString();
+    const gespeichertTag = localStorage.getItem('letzterTag');
+    
+    // Prüfe ob neuer Tag
+    if (gespeichertTag !== heute) {
+        localStorage.setItem('letzterTag', heute);
+        localStorage.setItem('dailyStats', JSON.stringify({
+            punkte: 0,
+            richtig: 0,
+            quizze: 0
+        }));
+    }
+    
+    // Lade aktuelle tägliche Stats
+    let dailyStats = JSON.parse(localStorage.getItem('dailyStats')) || {
+        punkte: 0,
+        richtig: 0,
+        quizze: 0
+    };
+    
+    // Update
+    dailyStats.punkte += punkte;
+    dailyStats.richtig += richtig;
+    dailyStats.quizze += quiz;
+    
+    // Speichere
+    localStorage.setItem('dailyStats', JSON.stringify(dailyStats));
+}
+
 // ============================================
 // TUTORIELLES MODELL - Adaptiver Lernpfad
 // ============================================
@@ -171,6 +202,10 @@ function initializeLearning() {
 
 // Outer Loop: Wähle passende Fragen basierend auf Schwierigkeit
 function starteNeuesQuiz() {
+    // Lade Einstellungen
+    const settings = getAppSettings();
+    const fragenAnzahl = settings.questionsPerQuiz || 3;
+    
     // Reset für neuen Durchgang
     lernendenmodell.aktuellerDurchgang = {
         richtig: 0,
@@ -187,6 +222,9 @@ function starteNeuesQuiz() {
     
     // Mische Fragen
     aktuelleFragenliste = aktuelleFragenliste.sort(() => Math.random() - 0.5);
+    
+    // Begrenze auf eingestellte Anzahl
+    aktuelleFragenliste = aktuelleFragenliste.slice(0, fragenAnzahl);
     
     // Zeige Quiz-Container
     document.getElementById('quizContainer').style.display = 'block';
@@ -251,13 +289,26 @@ function pruefeAntwort(gewaehlt) {
         lernendenmodell.richtigeAntworten++;
         lernendenmodell.aktuellerDurchgang.richtig++;
         
+        // Update tägliche Statistiken
+        updateDailyStats(punkte, 1, 0);
+        
+        // Lade Einstellungen für Erklärungen
+        const settings = getAppSettings();
+        
         // Zeige Feedback
-        document.getElementById('feedbackBox').style.display = 'block';
-        document.getElementById('feedbackText').innerHTML = `
+        let feedbackHTML = `
             <div style="color: #22c55e; font-size: 20px; margin-bottom: 8px;">✓ Richtig!</div>
-            <div style="font-size: 14px;">${frage.erklaerung}</div>
-            <div style="margin-top: 8px; color: #667eea; font-weight: 600;">+${punkte} Punkte</div>
         `;
+        
+        // Zeige Erklärung nur wenn aktiviert
+        if (settings.showExplanations) {
+            feedbackHTML += `<div style="font-size: 14px;">${frage.erklaerung}</div>`;
+        }
+        
+        feedbackHTML += `<div style="margin-top: 8px; color: #667eea; font-weight: 600;">+${punkte} Punkte</div>`;
+        
+        document.getElementById('feedbackBox').style.display = 'block';
+        document.getElementById('feedbackText').innerHTML = feedbackHTML;
         
         // Level-Up prüfen
         if (lernendenmodell.gesamtPunkte >= lernendenmodell.level * 30) {
@@ -277,8 +328,11 @@ function pruefeAntwort(gewaehlt) {
         lernendenmodell.falscheAntworten++;
         lernendenmodell.aktuellerDurchgang.falsch++;
         
-        // Inner Loop: Zeige Hinweis beim ersten Fehler
-        if (versuche === 1) {
+        // Lade Einstellungen
+        const settings = getAppSettings();
+        
+        // Inner Loop: Zeige Hinweis beim ersten Fehler (wenn aktiviert)
+        if (versuche === 1 && settings.showHints) {
             document.getElementById('hintBox').style.display = 'block';
             document.getElementById('hintText').textContent = frage.hinweis;
             
@@ -292,15 +346,21 @@ function pruefeAntwort(gewaehlt) {
                 });
             }, 1500);
         } else {
-            // Zweiter Fehler: Zeige richtige Antwort
+            // Zweiter Fehler oder Hinweise deaktiviert: Zeige richtige Antwort
             buttons[frage.richtig].classList.add('correct');
             
-            document.getElementById('feedbackBox').style.display = 'block';
-            document.getElementById('feedbackText').innerHTML = `
+            let feedbackHTML = `
                 <div style="color: #ef4444; font-size: 20px; margin-bottom: 8px;">✗ Leider falsch</div>
                 <div style="font-size: 14px;">Die richtige Antwort ist: <strong>${frage.antworten[frage.richtig]}</strong></div>
-                <div style="margin-top: 8px; font-size: 14px;">${frage.erklaerung}</div>
             `;
+            
+            // Zeige Erklärung nur wenn aktiviert
+            if (settings.showExplanations) {
+                feedbackHTML += `<div style="margin-top: 8px; font-size: 14px;">${frage.erklaerung}</div>`;
+            }
+            
+            document.getElementById('feedbackBox').style.display = 'block';
+            document.getElementById('feedbackText').innerHTML = feedbackHTML;
             
             speichereFortschritt();
             document.getElementById('nextButton').style.display = 'block';
@@ -325,6 +385,9 @@ function zeigeErgebnis() {
     
     // Erhöhe Quiz-Zähler
     lernendenmodell.absolvierteQuizze = (lernendenmodell.absolvierteQuizze || 0) + 1;
+    
+    // Update tägliche Stats
+    updateDailyStats(0, 0, 1);
     
     // Outer Loop: Schwierigkeit anpassen
     let neuerSchwierigkeitsgrad = lernendenmodell.schwierigkeitsgrad;

@@ -4,14 +4,67 @@
     box-sizing: border-box;
 }
 
+:root {
+    --primary-color: var(--gradient-start);
+    --primary-dark: var(--gradient-end);
+    --gradient-start: var(--gradient-start);
+    --gradient-end: var(--gradient-end);
+    --bg-color: #ffffff;
+    --card-bg: #ffffff;
+    --text-color: #333333;
+    --text-secondary: #666666;
+    --animation-duration: 0.2s;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    transition: background var(--animation-duration);
+}
+
+/* Dark Theme spezifische Styles */
+body.theme-dark {
+    color: var(--text-color);
+}
+
+body.theme-dark .login-box,
+body.theme-dark .dashboard-header,
+body.theme-dark .stat-box,
+body.theme-dark .subjects-overview,
+body.theme-dark .learning-area,
+body.theme-dark .stats-section,
+body.theme-dark .settings-section {
+    background: var(--card-bg);
+    color: var(--text-color);
+}
+
+body.theme-dark .subtitle,
+body.theme-dark .welcome-text,
+body.theme-dark .stat-label,
+body.theme-dark .setting-description {
+    color: var(--text-secondary);
+}
+
+body.theme-dark input,
+body.theme-dark select {
+    background: #4b5563;
+    color: var(--text-color);
+    border-color: #6b7280;
+}
+
+body.theme-dark .answer-button {
+    background: #4b5563;
+    color: var(--text-color);
+    border-color: #6b7280;
+}
+
+body.theme-dark .answer-button:hover:not(:disabled) {
+    background: #374151;
 }
 
 .login-container {
@@ -64,20 +117,20 @@ input, select {
 
 input:focus, select:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: var(--gradient-start);
 }
 
 .login-button {
     width: 100%;
     padding: 14px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
     color: white;
     border: none;
     border-radius: 8px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform var(--animation-duration), box-shadow var(--animation-duration);
     margin-top: 8px;
 }
 
@@ -162,6 +215,76 @@ input:focus, select:focus {
     background: #e0e0e0;
 }
 
+.header-buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.settings-button {
+    padding: 10px 24px;
+    background: #f5f5f5;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.settings-button:hover {
+    background: #e0e0e0;
+}
+
+/* Statistik-Sektion */
+.stats-section {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.stats-title {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.stats-toggle {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    background: #f5f5f5;
+    padding: 4px;
+    border-radius: 10px;
+    width: fit-content;
+}
+
+.toggle-btn {
+    padding: 10px 24px;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.toggle-btn.active {
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    color: white;
+}
+
+.toggle-btn:hover:not(.active) {
+    background: #e0e0e0;
+}
+
 .dashboard-content {
     background: white;
     padding: 40px;
@@ -183,7 +306,7 @@ input:focus, select:focus {
 .badge {
     display: inline-block;
     padding: 6px 12px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
     color: white;
     border-radius: 20px;
     font-size: 12px;
@@ -208,7 +331,7 @@ input:focus, select:focus {
 }
 
 .subjects-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
     color: white;
     padding: 40px;
     text-align: center;
@@ -344,7 +467,7 @@ input:focus, select:focus {
 
 /* Back Link */
 .back-link {
-    color: #667eea;
+    color: var(--gradient-start);
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
@@ -354,7 +477,7 @@ input:focus, select:focus {
 }
 
 .back-link:hover {
-    color: #764ba2;
+    color: var(--gradient-end);
 }
 
 /* Back Button im Ergebnis */
@@ -394,7 +517,7 @@ input:focus, select:focus {
 .stat-number {
     font-size: 36px;
     font-weight: 700;
-    color: #667eea;
+    color: var(--gradient-start);
     margin-bottom: 8px;
 }
 
@@ -413,7 +536,7 @@ input:focus, select:focus {
 }
 
 .topic-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
     color: white;
     padding: 30px;
     text-align: center;
@@ -439,7 +562,7 @@ input:focus, select:focus {
 }
 
 .question-number {
-    color: #667eea;
+    color: var(--gradient-start);
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 12px;
@@ -471,7 +594,7 @@ input:focus, select:focus {
 
 .answer-button:hover:not(:disabled) {
     background: #f0f0f0;
-    border-color: #667eea;
+    border-color: var(--gradient-start);
     transform: translateX(4px);
 }
 
@@ -514,7 +637,7 @@ input:focus, select:focus {
 .next-button {
     width: 100%;
     padding: 14px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
     color: white;
     border: none;
     border-radius: 8px;
@@ -556,7 +679,7 @@ input:focus, select:focus {
 .result-number {
     font-size: 36px;
     font-weight: 700;
-    color: #667eea;
+    color: var(--gradient-start);
     margin-bottom: 8px;
 }
 
@@ -566,7 +689,7 @@ input:focus, select:focus {
 }
 
 .result-message {
-    background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+    background: linear-gradient(135deg, var(--gradient-start)15 0%, var(--gradient-end)15 100%);
     padding: 20px;
     border-radius: 12px;
     font-size: 18px;
@@ -576,7 +699,7 @@ input:focus, select:focus {
 
 .restart-button {
     padding: 14px 32px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
     color: white;
     border: none;
     border-radius: 8px;
@@ -588,4 +711,164 @@ input:focus, select:focus {
 
 .restart-button:hover {
     transform: translateY(-2px);
+}
+
+/* Einstellungen */
+.settings-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.settings-section {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 24px;
+}
+
+.settings-section h2 {
+    color: #333;
+    margin-bottom: 24px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.setting-item:last-child {
+    border-bottom: none;
+}
+
+.setting-item:has(button) {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.setting-info {
+    flex: 1;
+}
+
+.setting-label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.setting-description {
+    font-size: 14px;
+    color: #666;
+}
+
+.setting-input,
+.setting-select {
+    padding: 10px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    min-width: 200px;
+}
+
+.setting-input:focus,
+.setting-select:focus {
+    outline: none;
+    border-color: var(--gradient-start);
+}
+
+.setting-input:disabled {
+    background: #f5f5f5;
+    cursor: not-allowed;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.3s;
+    border-radius: 28px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+}
+
+input:checked + .toggle-slider:before {
+    transform: translateX(22px);
+}
+
+/* Buttons */
+.settings-actions {
+    margin-top: 24px;
+}
+
+.save-button {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.save-button:hover {
+    transform: translateY(-2px);
+}
+
+.danger-button {
+    padding: 12px 24px;
+    background: #fee2e2;
+    color: #dc2626;
+    border: 2px solid #fecaca;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.danger-button:hover {
+    background: #fecaca;
+    border-color: #dc2626;
 }

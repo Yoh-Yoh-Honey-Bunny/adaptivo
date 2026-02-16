@@ -16,26 +16,59 @@
                     <span class="badge">SCHÜLER</span>
                 </p>
             </div>
-            <button onclick="logout()" class="logout-button">Abmelden</button>
+            <div class="header-buttons">
+                <a href="einstellungen.html" class="settings-button">⚙️ Einstellungen</a>
+                <button onclick="logout()" class="logout-button">Abmelden</button>
+            </div>
         </div>
         
         <!-- Fortschritts-Panel -->
-        <div class="progress-panel">
-            <div class="stat-box">
-                <div class="stat-number" id="totalPoints">0</div>
-                <div class="stat-label">Gesamt-Punkte</div>
+        <div class="stats-section">
+            <h3 class="stats-title">📊 Deine Statistiken</h3>
+            
+            <div class="stats-toggle">
+                <button class="toggle-btn active" onclick="zeigeStatistik('heute')">Heute</button>
+                <button class="toggle-btn" onclick="zeigeStatistik('gesamt')">Gesamt</button>
             </div>
-            <div class="stat-box">
-                <div class="stat-number" id="correctAnswers">0</div>
-                <div class="stat-label">Richtige Antworten</div>
+            
+            <!-- Heute-Statistik -->
+            <div class="progress-panel" id="statToday">
+                <div class="stat-box">
+                    <div class="stat-number" id="todayPoints">0</div>
+                    <div class="stat-label">Punkte heute</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="todayCorrect">0</div>
+                    <div class="stat-label">Richtig heute</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="todayQuizzes">0</div>
+                    <div class="stat-label">Übungen heute</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="todayStreak">0</div>
+                    <div class="stat-label">🔥 Tages-Streak</div>
+                </div>
             </div>
-            <div class="stat-box">
-                <div class="stat-number" id="totalSubjects">1</div>
-                <div class="stat-label">Aktive Fächer</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-number" id="totalQuizzes">0</div>
-                <div class="stat-label">Absolvierte Übungen</div>
+            
+            <!-- Gesamt-Statistik -->
+            <div class="progress-panel" id="statTotal" style="display: none;">
+                <div class="stat-box">
+                    <div class="stat-number" id="totalPoints">0</div>
+                    <div class="stat-label">Gesamt-Punkte</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="correctAnswers">0</div>
+                    <div class="stat-label">Richtige Antworten</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="totalSubjects">1</div>
+                    <div class="stat-label">Aktive Fächer</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="totalQuizzes">0</div>
+                    <div class="stat-label">Absolvierte Übungen</div>
+                </div>
             </div>
         </div>
 
@@ -119,12 +152,62 @@
     
     <script src="script.js"></script>
     <script src="adaptive-learning.js"></script>
+    <script src="settings.js"></script>
     <script>
         checkLogin();
         displayUserName();
         
-        // Lade alle Fächer-Fortschritte und zeige Gesamt-Statistiken
+        // Toggle zwischen Heute und Gesamt
+        function zeigeStatistik(typ) {
+            const buttons = document.querySelectorAll('.toggle-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            if (typ === 'heute') {
+                document.getElementById('statToday').style.display = 'grid';
+                document.getElementById('statTotal').style.display = 'none';
+                buttons[0].classList.add('active');
+            } else {
+                document.getElementById('statToday').style.display = 'none';
+                document.getElementById('statTotal').style.display = 'grid';
+                buttons[1].classList.add('active');
+            }
+        }
+        
+        // Prüfe ob neuer Tag und reset tägliche Statistik
+        function pruefeTagesReset() {
+            const heute = new Date().toDateString();
+            const gespeichertTag = localStorage.getItem('letzterTag');
+            
+            if (gespeichertTag !== heute) {
+                // Neuer Tag - reset tägliche Stats
+                localStorage.setItem('letzterTag', heute);
+                localStorage.setItem('dailyStats', JSON.stringify({
+                    punkte: 0,
+                    richtig: 0,
+                    quizze: 0
+                }));
+                
+                // Streak erhöhen wenn gestern aktiv war
+                const gestern = new Date();
+                gestern.setDate(gestern.getDate() - 1);
+                if (gespeichertTag === gestern.toDateString()) {
+                    let streak = parseInt(localStorage.getItem('streak') || '0');
+                    streak++;
+                    localStorage.setItem('streak', streak);
+                } else if (!gespeichertTag) {
+                    // Erster Tag
+                    localStorage.setItem('streak', '0');
+                } else {
+                    // Streak unterbrochen
+                    localStorage.setItem('streak', '0');
+                }
+            }
+        }
+        
+        // Lade alle Fächer-Fortschritte und zeige Statistiken
         function zeigeGesamtStatistiken() {
+            pruefeTagesReset();
+            
             const biologie = JSON.parse(localStorage.getItem('lernendenmodell_biologie')) || { 
                 gesamtPunkte: 0, 
                 richtigeAntworten: 0, 
@@ -133,7 +216,15 @@
                 schwierigkeitsgrad: 'leicht'
             };
             
-            // Berechne Gesamt-Statistiken über alle Fächer
+            const dailyStats = JSON.parse(localStorage.getItem('dailyStats')) || {
+                punkte: 0,
+                richtig: 0,
+                quizze: 0
+            };
+            
+            const streak = parseInt(localStorage.getItem('streak') || '0');
+            
+            // Gesamt-Statistiken
             const gesamtPunkte = biologie.gesamtPunkte;
             const gesamtRichtig = biologie.richtigeAntworten;
             const gesamtQuizze = biologie.absolvierteQuizze || 0;
@@ -143,6 +234,12 @@
             document.getElementById('correctAnswers').textContent = gesamtRichtig;
             document.getElementById('totalSubjects').textContent = aktiveFaecher;
             document.getElementById('totalQuizzes').textContent = gesamtQuizze;
+            
+            // Tägliche Statistiken
+            document.getElementById('todayPoints').textContent = dailyStats.punkte;
+            document.getElementById('todayCorrect').textContent = dailyStats.richtig;
+            document.getElementById('todayQuizzes').textContent = dailyStats.quizze;
+            document.getElementById('todayStreak').textContent = streak;
             
             // Zeige Biologie-Fortschritt auf der Karte
             const schwierigkeitTexte = {
