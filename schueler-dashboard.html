@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schüler Dashboard - Adaptivo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <div>
+                <h1>Willkommen zurück! 👋</h1>
+                <p class="welcome-text">
+                    Hallo <strong id="userName"></strong>
+                    <span class="badge">SCHÜLER</span>
+                </p>
+            </div>
+            <button onclick="logout()" class="logout-button">Abmelden</button>
+        </div>
+        
+        <div class="dashboard-content">
+            <h2>🎓 Dein Schüler-Dashboard</h2>
+            <p>Hier wird bald dein persönlicher Lernbereich sein!</p>
+            <br>
+            <p style="color: #999; font-size: 14px;">
+                Wir werden hier gemeinsam Funktionen wie Übungen, Fortschritt, 
+                Achievements und mehr hinzufügen.
+            </p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        // Prüfen ob eingeloggt, sonst zurück zum Login
+        checkLogin();
+        // Benutzernamen anzeigen
+        displayUserName();
+    </script>
+</body>
+</html>

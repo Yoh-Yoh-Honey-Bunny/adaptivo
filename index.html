@@ -1,11 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adaptivo</title>
+    <title>Adaptivo - Login</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="login-container">
+        <div class="login-box">
+            <h1>Adaptivo</h1>
+            <p class="subtitle">Adaptives Lernen mit Gamification</p>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">E-Mail</label>
+                    <input type="email" id="email" placeholder="deine@email.de" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Passwort</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="userType">Ich bin...</label>
+                    <select id="userType" required>
+                        <option value="">Bitte wählen</option>
+                        <option value="schueler">Schüler/in</option>
+                        <option value="lehrer">Lehrer/in</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="login-button">Anmelden</button>
+                
+                <div id="errorMessage" class="error-message"></div>
+            </form>
+            
+            <div class="demo-info">
+                <p><strong>Demo-Zugangsdaten zum Testen:</strong></p>
+                <p>👨‍🎓 Schüler: <code>schueler@test.de</code> / <code>schueler123</code></p>
+                <p>👨‍🏫 Lehrer: <code>lehrer@test.de</code> / <code>lehrer123</code></p>
+            </div>
+        </div>
+    </div>
     
+    <script src="script.js"></script>
 </body>
 </html>
